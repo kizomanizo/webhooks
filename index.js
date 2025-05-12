@@ -55,8 +55,8 @@ class Server {
   initializeRouteHandling() {
     const router = new Router();
 
-    this.app.use("/api/v1/webhooks", router.getRouter());
-    this.app.use("/health", () => {
+    this.app.use("/api/v1", router.getRouter());
+    this.app.use("/health", (_req, res) => {
       res.status(200).json({ status: "ok", up: true });
     });
   }
