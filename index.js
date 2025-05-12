@@ -56,6 +56,9 @@ class Server {
     const router = new Router();
 
     this.app.use("/api/v1/webhooks", router.getRouter());
+    this.app.use("/health", () => {
+      res.status(200).json({ status: "ok", up: true });
+    });
   }
 
   /**
