@@ -1,9 +1,8 @@
 /**
  * @file server.js
- * @version 1.0.0
- * @name Server
- * @description This file is the entry point for the Express server application. It sets up middleware, routing, and error handling.
- * @autor Kizito Mrema
+ * @version 1.0.1
+ * @author Kizito Mrema
+ * @description Entry point for the Express server application.
  */
 
 import express from "express";
@@ -15,11 +14,13 @@ import ErrorHelper from "./helpers/error-helper.js";
 import Router from "./router.js";
 
 /**
- * Class representing the server.
+ * @class Server
+ * @description Represents the Express server.
  */
 class Server {
   /**
-   * Create a Server instance.
+   * @constructor
+   * @description Initializes the server with middleware, error handling, and routes.
    */
   constructor() {
     this.app = express();
@@ -30,7 +31,10 @@ class Server {
   }
 
   /**
-   * Initialize middleware for the Express app.
+   * @private
+   * @function initializeMiddleware
+   * @description Configures the application-level middleware.
+   * @returns {void}
    */
   initializeMiddleware() {
     this.app.disable("x-powered-by");
@@ -40,29 +44,32 @@ class Server {
   }
 
   /**
-   * Initialize error handling for the Express app.
+   * @private
+   * @function initializeErrorHandling
+   * @description Sets up global error handling middleware.
+   * @returns {void}
    */
   initializeErrorHandling() {
     const errorHelperInstance = new ErrorHelper();
-    this.app.use((err, req, res, next) => {
-      errorHelperInstance.handleError(err, req, res, next);
-    });
+    this.app.use(errorHelperInstance.handleError);
   }
 
   /**
-   * Initialize route handling for the Express app.
+   * @private
+   * @function initializeRouteHandling
+   * @description Configures the API routes and health check endpoint.
+   * @returns {void}
    */
   initializeRouteHandling() {
     const router = new Router();
-
     this.app.use("/api/v1", router.getRouter());
-    this.app.use("/health", (_req, res) => {
-      res.status(200).json({ status: "ok", up: true });
-    });
+    this.app.use("/health", (_req, res) => res.status(200).json({ status: "ok", up: true }));
   }
 
   /**
-   * Start the Express server.
+   * @function start
+   * @description Starts the Express server and listens on the specified port.
+   * @returns {void}
    */
   start() {
     this.app.listen(this.port, () => {
@@ -70,8 +77,6 @@ class Server {
     });
   }
 }
-
-export default Server;
 
 const server = new Server();
 server.start();
