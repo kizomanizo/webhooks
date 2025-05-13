@@ -52,7 +52,7 @@ deployWebhooks:
 	echo "$(tput setaf 2)Installing dependencies...$(tput sgr0)"
 	npm install --silent && \
 	echo "$(tput setaf 2)Building the webhooks...$(tput sgr0)"
-	pm2 restart gateway-webhooks && \
+	pm2 restart asert-webhooks && \
 	echo "$(tput setaf 2)Waiting for the webhooks app to start$(tput sgr0)"
 	sleep 5 && \
 	echo "$(tput setaf 3)AserT Webhooks Deployment Completed.$(tput sgr0)" && cd -
