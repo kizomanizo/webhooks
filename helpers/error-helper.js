@@ -1,14 +1,21 @@
 /**
- * @file ErrorHelper.js
- * @version 1.0.0
- * @name ErrorHelper
- * @description This file contains the ErrorHelper class which provides methods for handling and logging errors.
- * @author [Kizito Mrema]
+ * @file error-helper.js
+ * @version 1.0.1
+ * @author Kizito Mrema
+ * @description Provides a class for handling and logging errors.
  */
 
 import winston from "winston";
 
+/**
+ * @class ErrorHelper
+ * @description Handles and logs application errors.
+ */
 class ErrorHelper {
+  /**
+   * @constructor
+   * @description Initializes the ErrorHelper with a Winston logger.
+   */
   constructor() {
     this.logger = winston.createLogger({
       level: "error",
@@ -22,9 +29,17 @@ class ErrorHelper {
     });
   }
 
+  /**
+   * @function handleError
+   * @description Logs the error and sends an appropriate JSON response if headers have not been sent.
+   * @param {Error} err - The error object.
+   * @param {object} req - The Express request object.
+   * @param {object} res - The Express response object.
+   * @param {function} next - The Express next middleware function.
+   * @returns {void}
+   */
   handleError(err, req, res, next) {
     this.logger.error(`${err.statusCode || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-
     if (!res.headersSent) {
       res.status(err.statusCode || 500).json({ success: false, message: err.message, payload: null });
     } else {
