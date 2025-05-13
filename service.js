@@ -42,9 +42,12 @@ class Service {
       }
 
       const event = req.get("X-GitHub-Event");
+      console.log(`Received event for branch: ${req.body.ref}`);
       if (event === "push" && req.body.ref === `refs/heads/${process.env[branchEnvVar]}`) {
         this.spawnCommand.run("make", commandArgs, ".", req, res, next);
+        console.log(`Running command: make ${commandArgs.join(" ")}`);
       } else {
+        console.log(`Ignoring event: ${event} for branch: ${req.body.ref}`);
         ResponseHelper.api(req, res, 200, true, "Ignoring non-push or non-target branch event.", null);
       }
     } catch (err) {
