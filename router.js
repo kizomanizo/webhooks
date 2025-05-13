@@ -41,27 +41,27 @@ class MergedRouter {
     /**
      * @route POST /backend
      * @description Route for triggering a backend update. Calls the `backendUpdate` method of the Controller.
-     * @param {express.Request} req - The Express request object.
-     * @param {express.Response} res - The Express response object.
-     * @param {express.NextFunction} next - The next middleware function.
+     * @param {Express.Request} req - The Express request object.
+     * @param {xpress.Response} res - The Express response object.
+     * @param {xpress.NextFunction} next - The next middleware function.
      */
     this.router.post("/backend", (req, res, next) => this.controller.backendUpdate(req, res, next));
 
     /**
      * @route POST /frontend
      * @description Route for triggering a frontend update. Calls the `frontendUpdate` method of the Controller.
-     * @param {express.Request} req - The Express request object.
-     * @param {express.Response} res - The Express response object.
-     * @param {express.NextFunction} next - The next middleware function.
+     * @param {Express.Request} req - The Express request object.
+     * @param {Express.Response} res - The Express response object.
+     * @param {Express.NextFunction} next - The next middleware function.
      */
     this.router.post("/frontend", (req, res, next) => this.controller.frontendUpdate(req, res, next));
 
     /**
      * @route POST /webhooks
      * @description Route for triggering a webhooks update. Calls the `webhooksUpdate` method of the Controller.
-     * @param {express.Request} req - The Express request object.
-     * @param {express.Response} res - The Express response object.
-     * @param {express.NextFunction} next - The next middleware function.
+     * @param {Express.Request} req - The Express request object.
+     * @param {Express.Response} res - The Express response object.
+     * @param {Express.NextFunction} next - The next middleware function.
      */
     this.router.post("/webhooks", (req, res, next) => this.controller.webhooksUpdate(req, res, next));
   }
