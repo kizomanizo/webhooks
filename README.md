@@ -1,6 +1,6 @@
-# AserT Webhooks
+# Webhooks
 
-Welcome to the **AserT Webhooks** project! This is a lightweight and efficient _Node.js_ application designed to handle **GitHub Webhooks**. It provides endpoints to process various GitHub events and trigger corresponding actions on this server.
+Welcome to the **Webhooks** project! This is a lightweight and efficient _Node.js_ application designed to handle **GitHub Webhooks**. It provides endpoints to process various GitHub events and trigger corresponding actions on this server.
 
 ## Features
 
