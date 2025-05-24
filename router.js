@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Controller from "./controller.js";
+import bodyParser from "body-parser";
 
 /**
  * @class MergedRouter
@@ -45,7 +46,7 @@ class MergedRouter {
      * @param {xpress.Response} res - The Express response object.
      * @param {xpress.NextFunction} next - The next middleware function.
      */
-    this.router.post("/backend", (req, res, next) => this.controller.backendUpdate(req, res, next));
+    this.router.post("/backend", bodyParser.raw({ type: "application/json" }), (req, res, next) => this.controller.backendUpdate(req, res, next));
 
     /**
      * @route POST /frontend
@@ -54,7 +55,7 @@ class MergedRouter {
      * @param {Express.Response} res - The Express response object.
      * @param {Express.NextFunction} next - The next middleware function.
      */
-    this.router.post("/frontend", (req, res, next) => this.controller.frontendUpdate(req, res, next));
+    this.router.post("/frontend", bodyParser.raw({ type: "application/json" }), (req, res, next) => this.controller.frontendUpdate(req, res, next));
 
     /**
      * @route POST /webhooks
@@ -63,7 +64,7 @@ class MergedRouter {
      * @param {Express.Response} res - The Express response object.
      * @param {Express.NextFunction} next - The next middleware function.
      */
-    this.router.post("/webhooks", (req, res, next) => this.controller.webhooksUpdate(req, res, next));
+    this.router.post("/webhooks", bodyParser.raw({ type: "application/json" }), (req, res, next) => this.controller.webhooksUpdate(req, res, next));
   }
 
   /**

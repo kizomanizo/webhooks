@@ -38,7 +38,7 @@ class Server {
    */
   initializeMiddleware() {
     this.app.disable("x-powered-by");
-    this.app.use(express.json());
+    // this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(bodyParser.json());
   }
