@@ -48,6 +48,7 @@ class VerifySignature {
 
     const expectedSignature = crypto.createHmac("sha256", this.githubSecret).update(JSON.stringify(req.body)).digest("hex");
 
+    // TODO: Remove console logs in production
     console.log("Expected Signature:", expectedSignature);
     console.log("Received Signature:", signature);
     console.log("GitHub Secret:", this.githubSecret);
