@@ -6,6 +6,7 @@
  */
 
 import crypto from "crypto";
+import bodyParser from "body-parser";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -46,7 +47,7 @@ class VerifySignature {
       return false;
     }
 
-    const expectedSignature = crypto.createHmac("sha256", this.githubSecret).update(JSON.stringify(req.body)).digest("hex");
+    const expectedSignature = crypto.createHmac("sha256", this.githubSecret).update(req.body).digest("hex");
 
     // TODO: Remove console logs in production
     console.log("Expected Signature:", expectedSignature);
