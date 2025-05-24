@@ -48,6 +48,10 @@ class VerifySignature {
 
     const expectedSignature = crypto.createHmac("sha256", this.githubSecret).update(JSON.stringify(req.body)).digest("hex");
 
+    console.log("Expected Signature:", expectedSignature);
+    console.log("Received Signature:", signature);
+    console.log("GitHub Secret:", this.githubSecret);
+
     return crypto.timingSafeEqual(Buffer.from(signature, "hex"), Buffer.from(expectedSignature, "hex"));
   }
 }
